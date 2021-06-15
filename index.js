@@ -61,7 +61,7 @@ class KISSReceiver extends Transform {
    * frames when received. Ignores multiple Frame End bytes received if there is no message between
    * them.
    * @param {Object} opts Instantiation options
-   * @param {Boolean} opts.emitCommandByte Preceed each frame with its Command Byte if truthy, only the bare frame if falsey
+   * @param {Boolean} opts.emitCommandByte Precede each frame with its Command Byte if truthy, only the bare frame if falsy
    * @param {Boolean} opts.emitObject Will emit an object with properties `portIndex: number` and `data: Buffer`
    */
   constructor(opts = {}) {
@@ -175,7 +175,7 @@ class KISSSender extends Transform {
   /**
    * Creates a Transform Stream to frame data to send to a TNC using the KISS protocol.
    * @param {Object} opts The configuration options for the KISS connection to the TNC
-   * @param {Boolean} opts.fullDuplex If truthy, use full duplex; if falsey use half duplex
+   * @param {Boolean} opts.fullDuplex If truthy, use full duplex; if falsy use half duplex
    * @param {String|Number[]} opts.hardware A variable-length string or array to transmit hardware-specific instructions
    * @param {Number} opts.persistence Number for persistence between 0 and 255 inclusive
    * @param {Number} opts.slotTime The slot interval in ms
