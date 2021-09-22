@@ -1,0 +1,26 @@
+{
+  "name": "kiss-tnc",
+  "version": "1.0.0",
+  "description": "Packager and parser for the AX.25 KISS protocol",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmitrydwhite/kiss-tnc.git"
+  },
+  "keywords": [
+    "KISS",
+    "TNC",
+    "AX.25",
+    "serial",
+    "stream"
+  ],
+  "author": "Dmitry White <white.dmitry@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dmitrydwhite/kiss-tnc/issues"
+  },
+  "homepage": "https://github.com/dmitrydwhite/kiss-tnc#readme"
+}
