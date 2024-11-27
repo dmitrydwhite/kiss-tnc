@@ -12,6 +12,11 @@ const replacementMap = {
 
 const ports = '0123456789ABCDEF';
 
+/**
+ * Creates a function that generates initialization messages for a KISS sender for the configuration values.
+ * @param {number} portIndex The TNC port used for sending
+ * @returns {(command: keyof commandBytes, value: number | Buffer) => Buffer}
+ */
 const getCommandBuilder = portIndex => {
   const pidx = ports[portIndex];
   const commandBytes = {
@@ -30,8 +35,13 @@ const getCommandBuilder = portIndex => {
   };
 };
 
+/**
+ * Converts an unescaped (raw) buffer to a buffer with special characters property escaped.
+ * @param {String | Buffer} chunk
+ * @returns {Buffer}
+ */
 const kissEscape = chunk => {
-  const buf = Array.from(chunk);
+  const buf = Array.from(typeof chunk === 'string' ? Buffer.from(chunk) : chunk);
   let i = 0;
 
   while (i < buf.length) {
@@ -175,14 +185,15 @@ class KISSSender extends Transform {
   /**
    * Creates a Transform Stream to frame data to send to a TNC using the KISS protocol.
    * @param {Object} opts The configuration options for the KISS connection to the TNC
+   * @param {number} opts.portIndex The number 0-15 indicating the port index of the connected TNC
    * @param {Boolean} opts.fullDuplex If truthy, use full duplex; if falsy use half duplex
-   * @param {String|Number[]} opts.hardware A variable-length string or array to transmit hardware-specific instructions
+   * @param {String | Number[]} opts.hardware A variable-length string or array to transmit hardware-specific instructions
    * @param {Number} opts.persistence Number for persistence between 0 and 255 inclusive
    * @param {Number} opts.slotTime The slot interval in ms
    * @param {Number} opts.txDelay Transmitter keyup delay in ms
    * @param {Number} opts.txTail Time to hold up TX after the Frame has been sent
    */
-  constructor(opts = {}) {
+  constructor(opts) {
     super();
     const properties = ['fullDuplex', 'hardware', 'persistence', 'slotTime', 'txDelay', 'txTail'];
     const portIndex = opts.portIndex;
@@ -218,6 +229,11 @@ class KISSSender extends Transform {
     });
   }
 
+  /**
+   * @param {Buffer|string} chunk
+   * @param {NodeJS.BufferEncoding} encoding
+   * @param {() => void} next
+   */
   _transform(chunk, encoding, next) {
     const escapedChunk = kissEscape(chunk);
     const frame = Buffer.concat([this.dataStart, escapedChunk, this.dataEnd]);
