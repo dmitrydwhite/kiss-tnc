@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Packager and parser for the AX.25 KISS protocol",
   "main": "index.js",
+  "types": "./types/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,5 +23,9 @@
   "bugs": {
     "url": "https://github.com/dmitrydwhite/kiss-tnc/issues"
   },
-  "homepage": "https://github.com/dmitrydwhite/kiss-tnc#readme"
+  "homepage": "https://github.com/dmitrydwhite/kiss-tnc#readme",
+  "devDependencies": {
+    "@types/node": "^24.2.0",
+    "typescript": "^5.9.2"
+  }
 }
