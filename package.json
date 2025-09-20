@@ -1,6 +1,6 @@
 {
   "name": "kiss-tnc",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Packager and parser for the AX.25 KISS protocol",
   "main": "index.js",
   "types": "./types/index.d.ts",
