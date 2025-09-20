@@ -47,7 +47,7 @@ export class KISSSender extends Transform {
      * @param {Number} opts.txDelay Transmitter keyup delay in ms
      * @param {Number} opts.txTail Time to hold up TX after the Frame has been sent
      */
-    constructor(opts: {
+    constructor(opts?: Partial<{
         portIndex: number;
         fullDuplex: boolean;
         hardware: string | number[];
@@ -55,7 +55,7 @@ export class KISSSender extends Transform {
         slotTime: number;
         txDelay: number;
         txTail: number;
-    });
+    }>);
     portIndex: number;
     dataStart: Buffer<ArrayBuffer>;
     dataEnd: Buffer<ArrayBuffer>;

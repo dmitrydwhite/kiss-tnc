@@ -196,7 +196,7 @@ class KISSSender extends Transform {
   constructor(opts) {
     super();
     const properties = ['fullDuplex', 'hardware', 'persistence', 'slotTime', 'txDelay', 'txTail'];
-    const portIndex = opts.portIndex;
+    const portIndex = opts.portIndex || 0;
 
     if (!Number.isInteger(portIndex)) {
       throw new Error('Cannot create a KISS sending Stream without a portIndex config property');
@@ -213,6 +213,10 @@ class KISSSender extends Transform {
     const outboundCommand = getCommandBuilder(portIndex);
 
     properties.forEach(property => {
+      if (!Object.hasOwn(opts, property)) {
+        return;
+      }
+
       this[property] = opts[property];
 
       if (['slotTime', 'txDelay', 'txTail'].indexOf(property) !== -1) {
