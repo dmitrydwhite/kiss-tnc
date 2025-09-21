@@ -193,7 +193,7 @@ class KISSSender extends Transform {
    * @param {Number} opts.txDelay Transmitter keyup delay in ms
    * @param {Number} opts.txTail Time to hold up TX after the Frame has been sent
    */
-  constructor(opts) {
+  constructor(opts = {}) {
     super();
     const properties = ['fullDuplex', 'hardware', 'persistence', 'slotTime', 'txDelay', 'txTail'];
     const portIndex = opts.portIndex || 0;
